@@ -3,13 +3,6 @@ import {Model, model, property} from '@loopback/repository';
 @model()
 export class Address extends Model {
   @property({
-    type: 'number',
-    id: true,
-    generated: true,
-  })
-  AddressId?: number;
-
-  @property({
     type: 'string',
     required: true,
   })
