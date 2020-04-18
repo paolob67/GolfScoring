@@ -54,7 +54,7 @@ export class User extends Entity {
   IsParent: boolean;
 
   @property({
-    type: 'object',
+    name: 'UserAddress',
   })
   UserAddress?: Address;
 

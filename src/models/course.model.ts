@@ -3,6 +3,7 @@ import {Address} from './address.model';
 import {Hole} from './hole.model';
 import {Event} from './event.model';
 
+
 @model()
 export class Course extends Entity {
   @property({
@@ -19,7 +20,7 @@ export class Course extends Entity {
   CourseName: string;
 
   @property({
-    type: 'object',
+    name: 'CourseAddress',
   })
   CourseAddress: Address;
 
@@ -30,11 +31,7 @@ export class Course extends Entity {
   })
   CourseHolesCount: number;
 
-  @property({
-    type: 'array',
-    itemType: 'object',
-    required: true,
-  })
+  @property.array(Hole)
   CourseHoles: Hole[];
 
   @hasMany(() => Event)
