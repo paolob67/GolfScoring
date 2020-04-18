@@ -25,6 +25,10 @@ export class Hole extends Entity {
   })
   HolePar?: number;
 
+  @property({
+    type: 'number',
+  })
+  courseId?: number;
 
   constructor(data?: Partial<Hole>) {
     super(data);

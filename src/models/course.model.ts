@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
+import {Address} from './address.model';
+import {Hole} from './hole.model';
 
 @model()
 export class Course extends Entity {
@@ -22,6 +24,11 @@ export class Course extends Entity {
   })
   CourseHolesCount: number;
 
+  @hasOne(() => Address)
+  CourseAddress: Address;
+
+  @hasMany(() => Hole)
+  CourseHoles: Hole[];
 
   constructor(data?: Partial<Course>) {
     super(data);
