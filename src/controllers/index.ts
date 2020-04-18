@@ -6,3 +6,6 @@ export * from './course-address.controller';
 export * from './user-address.controller';
 export * from './course-hole.controller';
 export * from './event-course.controller';
+export * from './event-event-roster.controller';
+export * from './user-event-roster.controller';
+export * from './event-roster.controller';
