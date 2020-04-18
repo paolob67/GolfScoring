@@ -1,9 +1,8 @@
-import {DefaultCrudRepository, repository, HasOneRepositoryFactory, HasManyRepositoryFactory} from '@loopback/repository';
-import {Course, CourseRelations, Address, Hole} from '../models';
+import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
+import {Course, CourseRelations, Event} from '../models';
 import {GolfScoringDataSource} from '../datasources';
 import {inject, Getter} from '@loopback/core';
-import {AddressRepository} from './address.repository';
-import {HoleRepository} from './hole.repository';
+import {EventRepository} from './event.repository';
 
 export class CourseRepository extends DefaultCrudRepository<
   Course,
@@ -11,17 +10,13 @@ export class CourseRepository extends DefaultCrudRepository<
   CourseRelations
 > {
 
-  public readonly address: HasOneRepositoryFactory<Address, typeof Course.prototype.CourseId>;
-
-  public readonly CourseHoles: HasManyRepositoryFactory<Hole, typeof Course.prototype.CourseId>;
+  public readonly events: HasManyRepositoryFactory<Event, typeof Course.prototype.CourseId>;
 
   constructor(
-    @inject('datasources.GolfScoring') dataSource: GolfScoringDataSource, @repository.getter('AddressRepository') protected addressRepositoryGetter: Getter<AddressRepository>, @repository.getter('HoleRepository') protected holeRepositoryGetter: Getter<HoleRepository>,
+    @inject('datasources.GolfScoring') dataSource: GolfScoringDataSource, @repository.getter('EventRepository') protected eventRepositoryGetter: Getter<EventRepository>,
   ) {
     super(Course, dataSource);
-    this.CourseHoles = this.createHasManyRepositoryFactoryFor('CourseHoles', holeRepositoryGetter,);
-    this.registerInclusionResolver('CourseHoles', this.CourseHoles.inclusionResolver);
-    this.address = this.createHasOneRepositoryFactoryFor('address', addressRepositoryGetter);
-    this.registerInclusionResolver('address', this.address.inclusionResolver);
+    this.events = this.createHasManyRepositoryFactoryFor('events', eventRepositoryGetter,);
+    this.registerInclusionResolver('events', this.events.inclusionResolver);
   }
 }

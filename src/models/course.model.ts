@@ -1,6 +1,7 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
 import {Address} from './address.model';
 import {Hole} from './hole.model';
+import {Event} from './event.model';
 
 @model()
 export class Course extends Entity {
@@ -18,22 +19,26 @@ export class Course extends Entity {
   CourseName: string;
 
   @property({
+    type: 'object',
+  })
+  CourseAddress: Address;
+
+  @property({
     type: 'number',
     required: true,
     default: 18,
   })
   CourseHolesCount: number;
 
-  @hasOne(() => Address)
-  CourseAddress: Address;
-
-  @hasMany(() => Hole)
+  @property({
+    type: 'array',
+    itemType: 'object',
+    required: true,
+  })
   CourseHoles: Hole[];
 
-  @property({
-    type: 'number',
-  })
-  eventId?: number;
+  @hasMany(() => Event)
+  events: Event[];
 
   constructor(data?: Partial<Course>) {
     super(data);

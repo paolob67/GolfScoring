@@ -1,6 +1,5 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
 import {Course} from './course.model';
-import {EventRoster} from './event-roster.model';
 
 @model()
 export class Event extends Entity {
@@ -28,11 +27,10 @@ export class Event extends Entity {
   })
   EventDurantion?: number;
 
-  @hasOne(() => Course)
-  CourseId: Course;
-
-  @hasMany(() => EventRoster)
-  eventRosters: EventRoster[];
+  @property({
+    type: 'number',
+  })
+  courseId?: number;
 
   constructor(data?: Partial<Event>) {
     super(data);

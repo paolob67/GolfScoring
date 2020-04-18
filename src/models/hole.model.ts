@@ -1,14 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Model, model, property} from '@loopback/repository';
 
 @model()
-export class Hole extends Entity {
-  @property({
-    type: 'number',
-    id: true,
-    generated: true,
-  })
-  HoleId?: number;
-
+export class Hole extends Model {
   @property({
     type: 'number',
     required: true,
@@ -24,11 +17,6 @@ export class Hole extends Entity {
     type: 'number',
   })
   HolePar?: number;
-
-  @property({
-    type: 'number',
-  })
-  courseId?: number;
 
   constructor(data?: Partial<Hole>) {
     super(data);

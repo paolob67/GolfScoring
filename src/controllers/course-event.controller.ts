@@ -17,39 +17,39 @@ import {
 } from '@loopback/rest';
 import {
   Course,
-  Address,
+  Event,
 } from '../models';
 import {CourseRepository} from '../repositories';
 
-export class CourseAddressController {
+export class CourseEventController {
   constructor(
     @repository(CourseRepository) protected courseRepository: CourseRepository,
   ) { }
 
-  @get('/courses/{id}/address', {
+  @get('/courses/{id}/events', {
     responses: {
       '200': {
-        description: 'Course has one Address',
+        description: 'Array of Course has many Event',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(Address),
+            schema: {type: 'array', items: getModelSchemaRef(Event)},
           },
         },
       },
     },
   })
-  async get(
+  async find(
     @param.path.number('id') id: number,
-    @param.query.object('filter') filter?: Filter<Address>,
-  ): Promise<Address> {
-    return this.courseRepository.address(id).get(filter);
+    @param.query.object('filter') filter?: Filter<Event>,
+  ): Promise<Event[]> {
+    return this.courseRepository.events(id).find(filter);
   }
 
-  @post('/courses/{id}/address', {
+  @post('/courses/{id}/events', {
     responses: {
       '200': {
         description: 'Course model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Address)}},
+        content: {'application/json': {schema: getModelSchemaRef(Event)}},
       },
     },
   })
@@ -58,22 +58,22 @@ export class CourseAddressController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Address, {
-            title: 'NewAddressInCourse',
-            exclude: ['AddressId'],
+          schema: getModelSchemaRef(Event, {
+            title: 'NewEventInCourse',
+            exclude: ['EventId'],
             optional: ['courseId']
           }),
         },
       },
-    }) address: Omit<Address, 'AddressId'>,
-  ): Promise<Address> {
-    return this.courseRepository.address(id).create(address);
+    }) event: Omit<Event, 'EventId'>,
+  ): Promise<Event> {
+    return this.courseRepository.events(id).create(event);
   }
 
-  @patch('/courses/{id}/address', {
+  @patch('/courses/{id}/events', {
     responses: {
       '200': {
-        description: 'Course.Address PATCH success count',
+        description: 'Course.Event PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -83,28 +83,28 @@ export class CourseAddressController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Address, {partial: true}),
+          schema: getModelSchemaRef(Event, {partial: true}),
         },
       },
     })
-    address: Partial<Address>,
-    @param.query.object('where', getWhereSchemaFor(Address)) where?: Where<Address>,
+    event: Partial<Event>,
+    @param.query.object('where', getWhereSchemaFor(Event)) where?: Where<Event>,
   ): Promise<Count> {
-    return this.courseRepository.address(id).patch(address, where);
+    return this.courseRepository.events(id).patch(event, where);
   }
 
-  @del('/courses/{id}/address', {
+  @del('/courses/{id}/events', {
     responses: {
       '200': {
-        description: 'Course.Address DELETE success count',
+        description: 'Course.Event DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async delete(
     @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(Address)) where?: Where<Address>,
+    @param.query.object('where', getWhereSchemaFor(Event)) where?: Where<Event>,
   ): Promise<Count> {
-    return this.courseRepository.address(id).delete(where);
+    return this.courseRepository.events(id).delete(where);
   }
 }

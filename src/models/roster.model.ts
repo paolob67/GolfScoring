@@ -1,13 +1,13 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class EventRoster extends Entity {
+export class Roster extends Entity {
   @property({
     type: 'number',
     id: true,
     generated: true,
   })
-  EventRosterId?: number;
+  RosterId?: number;
 
   @property({
     type: 'date',
@@ -30,13 +30,13 @@ export class EventRoster extends Entity {
   })
   userId?: string;
 
-  constructor(data?: Partial<EventRoster>) {
+  constructor(data?: Partial<Roster>) {
     super(data);
   }
 }
 
-export interface EventRosterRelations {
+export interface RosterRelations {
   // describe navigational properties here
 }
 
-export type EventRosterWithRelations = EventRoster & EventRosterRelations;
+export type RosterWithRelations = Roster & RosterRelations;
