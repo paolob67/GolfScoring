@@ -5,3 +5,4 @@ export * from './course.controller';
 export * from './course-address.controller';
 export * from './user-address.controller';
 export * from './course-hole.controller';
+export * from './event-course.controller';

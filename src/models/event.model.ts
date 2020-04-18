@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne} from '@loopback/repository';
+import {Course} from './course.model';
 
 @model()
 export class Event extends Entity {
@@ -26,6 +27,8 @@ export class Event extends Entity {
   })
   EventDurantion?: number;
 
+  @hasOne(() => Course)
+  CourseId: Course;
 
   constructor(data?: Partial<Event>) {
     super(data);

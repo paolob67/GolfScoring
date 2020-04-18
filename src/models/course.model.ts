@@ -30,6 +30,11 @@ export class Course extends Entity {
   @hasMany(() => Hole)
   CourseHoles: Hole[];
 
+  @property({
+    type: 'number',
+  })
+  eventId?: number;
+
   constructor(data?: Partial<Course>) {
     super(data);
   }
