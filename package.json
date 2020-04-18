@@ -13,6 +13,8 @@
   "scripts": {
     "build": "lb-tsc",
     "build:watch": "lb-tsc --watch",
+    "docker:start": "./bin/start-dbs.sh",
+    "docker:stop": "./bin/stop-dbs.sh",
     "lint": "npm run prettier:check && npm run eslint",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
