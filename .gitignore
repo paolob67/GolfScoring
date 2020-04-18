@@ -68,4 +68,4 @@ dist*/
 .eslintcache
 
 docker-build
-tsconfig.tsbuildinfo
+*.tsbuildinfo
