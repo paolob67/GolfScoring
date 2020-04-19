@@ -1,16 +1,16 @@
 import {DefaultCrudRepository} from '@loopback/repository';
-import {User, UserRelations} from '../models';
+import {Player, PlayerRelations} from '../models';
 import {GolfScoringDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
-export class UserRepository extends DefaultCrudRepository<
-  User,
-  typeof User.prototype.email,
-  UserRelations
+export class PlayerRepository extends DefaultCrudRepository<
+  Player,
+  typeof Player.prototype.Email,
+  PlayerRelations
 > {
   constructor(
     @inject('datasources.GolfScoring') dataSource: GolfScoringDataSource,
   ) {
-    super(User, dataSource);
+    super(Player, dataSource);
   }
 }

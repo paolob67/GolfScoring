@@ -1,15 +1,14 @@
-import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
-import {Address} from './address.model';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class User extends Entity {
+export class Player extends Entity {
   @property({
     type: 'string',
     id: true,
     generated: false,
     required: true,
   })
-  email: string;
+  Email: string;
 
   @property({
     type: 'string',
@@ -32,17 +31,29 @@ export class User extends Entity {
   @property({
     type: 'string',
   })
+  ClubName?: string;
+
+  @property({
+    type: 'string',
+  })
   CardNumber?: string;
 
   @property({
     type: 'number',
   })
-  CurrentScore?: number;
+  Handicap?: number;
 
+  @property({
+    type: 'string',
+  })
+  Gender?: number;
+
+  /*
   @property({
     name: 'UserAddress',
   })
   UserAddress?: Address;
+  */
 
   @property({
     type: 'boolean',
@@ -58,13 +69,13 @@ export class User extends Entity {
   })
   IsParent: boolean;
 
-  constructor(data?: Partial<User>) {
+  constructor(data?: Partial<Player>) {
     super(data);
   }
 }
 
-export interface UserRelations {
+export interface PlayerRelations {
   // describe navigational properties here
 }
 
-export type UserWithRelations = User & UserRelations;
+export type PlayerWithRelations = Player & PlayerRelations;

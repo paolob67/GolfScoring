@@ -19,7 +19,17 @@ export class Score extends Entity {
   @property({
     type: 'number',
   })
-  Day?: number;
+  PlayingHandicap?: number;
+
+  @property({
+    type: 'number',
+  })
+  StartHole?: number;
+
+  @property({
+    type: 'number',
+  })
+  Round?: number;
 
   @property({
     type: 'number',

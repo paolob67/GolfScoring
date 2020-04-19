@@ -16,6 +16,11 @@ export class Hole extends Model {
   @property({
     type: 'number',
   })
+  HoleHandicap?: number;
+
+  @property({
+    type: 'number',
+  })
   HolePar?: number;
 
   constructor(data?: Partial<Hole>) {

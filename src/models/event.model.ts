@@ -16,6 +16,11 @@ export class Event extends Entity {
   EventName?: string;
 
   @property({
+    type: 'string',
+  })
+  EventType?: string;
+
+  @property({
     type: 'date',
     required: true,
   })
@@ -25,7 +30,7 @@ export class Event extends Entity {
     type: 'number',
     default: 1,
   })
-  EventDurantion?: number;
+  NuoberOfRounds?: number;
 
   @property({
     type: 'number',
