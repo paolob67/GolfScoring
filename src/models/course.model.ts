@@ -34,9 +34,6 @@ export class Course extends Entity {
   @property.array(Hole)
   CourseHoles: Hole[];
 
-  @hasMany(() => Event)
-  events: Event[];
-
   constructor(data?: Partial<Course>) {
     super(data);
   }

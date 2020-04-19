@@ -40,6 +40,11 @@ export class User extends Entity {
   CurrentScore?: number;
 
   @property({
+    name: 'UserAddress',
+  })
+  UserAddress?: Address;
+
+  @property({
     type: 'boolean',
     required: true,
     default: false,
@@ -52,11 +57,6 @@ export class User extends Entity {
     default: false,
   })
   IsParent: boolean;
-
-  @property({
-    name: 'UserAddress',
-  })
-  UserAddress?: Address;
 
   constructor(data?: Partial<User>) {
     super(data);
