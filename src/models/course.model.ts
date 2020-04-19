@@ -1,7 +1,6 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
 import {Address} from './address.model';
 import {Hole} from './hole.model';
-import {Event} from './event.model';
 
 
 @model()

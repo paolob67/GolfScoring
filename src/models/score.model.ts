@@ -1,4 +1,5 @@
 import {Entity, model, property} from '@loopback/repository';
+import {HoleScore} from "./hole-score.model";
 
 @model()
 export class Score extends Entity {
@@ -10,28 +11,28 @@ export class Score extends Entity {
   ScoreId?: number;
 
   @property({
-    type: 'number',
-    required: true,
-    default: 1,
-  })
-  EventDay: number;
-
-  @property({
-    type: 'number',
+    type: 'date',
     required: true,
   })
-  Self: number;
+  StartTime: string;
 
   @property({
     type: 'number',
   })
-  Marker?: number;
+  Day?: number;
 
   @property({
     type: 'number',
   })
-  Validated?: number;
+  eventId?: number;
 
+  @property({
+    type: 'string',
+  })
+  userId?: string;
+
+  @property.array(HoleScore)
+  HoleScore: HoleScore[];
 
   constructor(data?: Partial<Score>) {
     super(data);
