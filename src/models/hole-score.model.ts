@@ -14,6 +14,11 @@ export class HoleScore extends Model {
   Marker?: number;
 
   @property({
+    type: 'string',
+  })
+  MarkerId?: string;
+
+  @property({
     type: 'number',
   })
   Validated?: number;
