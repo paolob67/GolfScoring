@@ -1,1 +1,1 @@
-export * from './golf-scoring.datasource';
+export * from './mongo.datasource';

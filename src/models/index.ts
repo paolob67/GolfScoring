@@ -4,4 +4,5 @@ export * from './hole.model';
 export * from './address.model';
 export * from './hole-score.model';
 export * from './score.model';
-export * from './player.model';
+export * from './user.model';
+export * from './user-credentials.model';

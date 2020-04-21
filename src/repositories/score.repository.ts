@@ -1,6 +1,6 @@
 import {DefaultCrudRepository} from '@loopback/repository';
 import {Score, ScoreRelations} from '../models';
-import {GolfScoringDataSource} from '../datasources';
+import {MongoDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class ScoreRepository extends DefaultCrudRepository<
@@ -9,7 +9,7 @@ export class ScoreRepository extends DefaultCrudRepository<
   ScoreRelations
 > {
   constructor(
-    @inject('datasources.GolfScoring') dataSource: GolfScoringDataSource,
+    @inject('datasources.mongo') dataSource: MongoDataSource,
   ) {
     super(Score, dataSource);
   }

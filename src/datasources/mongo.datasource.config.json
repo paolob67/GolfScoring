@@ -1,5 +1,5 @@
 {
-  "name": "GolfScoring",
+  "name": "mongo",
   "connector": "mongodb",
   "url": "",
   "host": "127.0.0.1",
@@ -7,5 +7,6 @@
   "user": "",
   "password": "",
   "database": "",
-  "useNewUrlParser": true
+  "useNewUrlParser": true,
+  "useUnifiedTopology": true
 }
