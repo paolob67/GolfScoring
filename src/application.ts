@@ -131,7 +131,9 @@ export class GolfScoringApplication extends BootMixin(
     // Use `databaseSeeding` flag to control if products/users should be pre
     // populated into the database. Its value is default to `true`.
     if (this.options.databaseSeeding !== false) {
+      console.log('\n> loading bootstrap data...');
       await this.migrateSchema();
+      console.log('> done');
     }
     return super.start();
   }
@@ -166,6 +168,7 @@ export class GolfScoringApplication extends BootMixin(
     for (const file of userFiles) {
       if (file.endsWith('.yml')) {
         const userFile = path.join(usersDir, file);
+        console.log('  - ' + userFile);
         const yamlString = YAML.parse(fs.readFileSync(userFile, 'utf8'));
         const input = new NewUser(yamlString);
         const password = await passwordHasher.hashPassword(input.password);

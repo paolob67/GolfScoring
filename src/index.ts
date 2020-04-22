@@ -9,8 +9,7 @@ export async function main(options: ApplicationConfig = {}) {
   await app.start();
 
   const url = app.restServer.url;
-  console.log(`Server is running at ${url}`);
-  console.log(`Try ${url}/ping`);
+  console.log(`\n\n> Server is running at ${url}\n> Try ${url}/ping`);
 
   return app;
 }

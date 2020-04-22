@@ -75,11 +75,11 @@ const navBarTemplate = `
           <form id="logInForm">
             <div class="form-group">
               <label for="logInEmail">Email address</label>
-              <input type="email" class="form-control" id="logInEmail" value="john@example.com">
+              <input type="email" class="form-control" id="logInEmail" value="paolo@golf.com">
             </div>
             <div class="form-group">
               <label for="logInPassword">Password</label>
-              <input type="password" class="form-control" id="logInPassword" value="john12345678">
+              <input type="password" class="form-control" id="logInPassword" value="paolo123">
             </div>
             <div class="text-center">
               <div id="logInButton" class="btn btn-primary">Log In</div>
