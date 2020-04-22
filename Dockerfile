@@ -19,6 +19,9 @@ RUN npm install
 # Bundle app source code
 COPY --chown=node . .
 
+# modify datasource to point to the golf_scoring_db container
+RUN sed -i "s/127.0.0.1/golf_scoring_db/g" src/datasources/mongo.datasource.config.json
+
 RUN npm run build
 
 # Bind to all network interfaces so that it can be mapped to the host OS
