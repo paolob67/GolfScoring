@@ -296,7 +296,9 @@ async function updateUser() {
   const email = $('#profile-email').val();
   const ClubName = $('#profile-club').val();
   const Card = $('#profile-card').val();
+  //TODO: transform in number
   const Handicap = $('#profile-handicap').val();
+  const Gender = $('#gender-male').prop('checked') ? 'male' : 'female';
   const roles = [];
   $('#profile-roles input').each((i, input) => {
     if ($(input).prop('checked')) {
@@ -311,6 +313,7 @@ async function updateUser() {
     ClubName,
     Card,
     Handicap,
+    Gender,
     roles,
   };
   try {

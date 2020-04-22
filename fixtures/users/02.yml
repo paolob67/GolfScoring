@@ -2,4 +2,4 @@ email: paolo@golf.com
 firstName: Paolo
 lastName: Golf
 password: paolo123
-roles: ['customer']
+roles: ['player']

@@ -262,13 +262,17 @@ const profileTemplate = `
       <label for="gender-female">Female</label>
     </div>
     <div id="profile-roles"><b>Roles</b>
-      <label for="coach-role">
-        <input id="coach-role" type="checkbox">
-        Coach
+      <label for="admin-role">
+        <input id="admin-role" type="checkbox">
+        Admin
       </label>
-      <label for="parent-role">
-        <input id="parent-role" type="checkbox">
-        Parent
+      <label for="support-role">
+        <input id="support-role" type="checkbox">
+        Support
+      </label>
+      <label for="player-role">
+        <input id="player-role" type="checkbox">
+        Player
       </label>
     </div>
   </p>

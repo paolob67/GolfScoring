@@ -61,6 +61,16 @@ export class User extends Entity {
   })
   Handicap?: string;
 
+  @property({
+    type: 'string',
+  })
+  Gender?: string;
+
+  @property({
+    type: 'array',
+    itemType: 'string',
+  })
+  roles?: string[];
 
   // @hasMany(() => Order)
   // orders: Order[];
@@ -73,11 +83,6 @@ export class User extends Entity {
   // @hasOne(() => ShoppingCart)
   // shoppingCart: ShoppingCart;
 
-  @property({
-    type: 'array',
-    itemType: 'string',
-  })
-  roles?: string[];
 
   constructor(data?: Partial<User>) {
     super(data);

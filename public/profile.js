@@ -25,6 +25,8 @@ $(async function () {
 
       $('#profile').append(profileHtml);
 
+      $('#gender-'+user.Gender).attr('checked', true);
+
       user.roles.forEach(role => {
         $('#' + role + '-role').attr('checked', true);
       });

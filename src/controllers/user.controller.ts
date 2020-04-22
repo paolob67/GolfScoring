@@ -90,8 +90,8 @@ export class UserController {
     })
     newUserRequest: NewUserRequest,
   ): Promise<User> {
-    // All new users have the "customer" role by default
-    newUserRequest.roles = ['customer'];
+    // All new users have the "player" role by default
+    newUserRequest.roles = ['player'];
     // ensure a valid email value and password value
     validateCredentials(_.pick(newUserRequest, ['email', 'password']));
 
@@ -139,7 +139,7 @@ export class UserController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'customer'],
+    allowedRoles: ['admin', 'player'],
     voters: [basicAuthorization],
   })
   async set(
@@ -177,7 +177,7 @@ export class UserController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'support', 'customer'],
+    allowedRoles: ['admin', 'support', 'player'],
     voters: [basicAuthorization],
   })
   async findById(@param.path.string('userId') userId: string): Promise<User> {
