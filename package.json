@@ -27,7 +27,7 @@
     "posttest": "npm run lint",
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
     "docker:build": "docker build -t golf-scoring .",
-    "docker:run": "docker run -p 3000:3000 -d golf-scoring",
+    "docker:run": "docker run --name golf_scoring_server -p 3000:3000 -d golf-scoring",
     "migrate": "node ./dist/migrate",
     "prestart": "npm run build",
     "start": "node -r source-map-support/register .",
