@@ -13,19 +13,27 @@ $(async function () {
       const user = await api.getUser(id);
       const fullName = util.fullName(user);
       console.log(user);
+
+      let hcp;
+      if (user.handicap !== 0) {
+        hcp = DOMPurify.sanitize(user.handicap);
+      } else {
+        hcp = '0';
+      }
+
       const profileHtml = templates.profile
         .replace(/#USER-ID#/gi, user.id)
         .replace(/#NAME#/gi, fullName)
         .replace(/#FIRST-NAME#/gi, DOMPurify.sanitize(user.firstName))
         .replace(/#LAST-NAME#/gi, DOMPurify.sanitize(user.lastName))
         .replace(/#EMAIL#/gi, DOMPurify.sanitize(user.email))
-        .replace(/#CLUB-NAME#/gi, DOMPurify.sanitize(user.ClubName))
-        .replace(/#CARD#/gi, DOMPurify.sanitize(user.Card))
-        .replace(/#HANDICAP#/gi, DOMPurify.sanitize(user.Handicap));
+        .replace(/#CLUB-NAME#/gi, DOMPurify.sanitize(user.clubName))
+        .replace(/#CARD#/gi, DOMPurify.sanitize(user.card))
+        .replace(/#HANDICAP#/gi, hcp);
 
       $('#profile').append(profileHtml);
 
-      $('#gender-'+user.Gender).attr('checked', true);
+      $('#gender-'+user.gender).attr('checked', true);
 
       user.roles.forEach(role => {
         $('#' + role + '-role').attr('checked', true);
@@ -39,6 +47,7 @@ $(async function () {
         $('#profile input').attr('disabled', true);
         $('#update-profile div').addClass('disabled');
       }
+
     } catch (e) {
       if (e.status === 401) {
         $('#profile').append('<center>UNAUTHORIZED</center>');

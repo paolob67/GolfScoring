@@ -49,22 +49,23 @@ export class User extends Entity {
   @property({
     type: 'string',
   })
-  ClubName?: string;
+  clubName?: string;
 
   @property({
     type: 'string',
   })
-  Card?: string;
+  card?: string;
 
   @property({
     type: 'number',
+    default: 1,
   })
-  Handicap?: number;
+  handicap?: number;
 
   @property({
     type: 'string',
   })
-  Gender?: string;
+  gender?: string;
 
   @property({
     type: 'array',

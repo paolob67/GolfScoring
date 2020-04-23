@@ -294,11 +294,10 @@ async function updateUser() {
   const firstName = $('#profile-firstName').val();
   const lastName = $('#profile-lastName').val();
   const email = $('#profile-email').val();
-  const ClubName = $('#profile-club').val();
-  const Card = $('#profile-card').val();
-  //TODO: transform in number
-  const Handicap = parseInt($('#profile-handicap').val());
-  const Gender = $('#gender-male').prop('checked') ? 'male' : 'female';
+  const clubName = $('#profile-club').val();
+  const card = $('#profile-card').val();
+  let handicap = parseInt($('#profile-handicap').val());
+  const gender = $('#gender-male').prop('checked') ? 'male' : 'female';
   const roles = [];
   $('#profile-roles input').each((i, input) => {
     if ($(input).prop('checked')) {
@@ -306,16 +305,20 @@ async function updateUser() {
       roles.push(role);
     }
   });
+  if (handicap == undefined) {
+    handicap = 0;
+  }
   const body = {
     firstName,
     lastName,
     email,
-    ClubName,
-    Card,
-    Handicap,
-    Gender,
+    clubName,
+    card,
+    handicap,
+    gender,
     roles,
   };
+
   try {
     await api.updateUsr(userId, body);
     location.reload();
