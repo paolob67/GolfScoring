@@ -57,9 +57,9 @@ export class User extends Entity {
   Card?: string;
 
   @property({
-    type: 'string',
+    type: 'number',
   })
-  Handicap?: string;
+  Handicap?: number;
 
   @property({
     type: 'string',

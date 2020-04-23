@@ -297,7 +297,7 @@ async function updateUser() {
   const ClubName = $('#profile-club').val();
   const Card = $('#profile-card').val();
   //TODO: transform in number
-  const Handicap = $('#profile-handicap').val();
+  const Handicap = parseInt($('#profile-handicap').val());
   const Gender = $('#gender-male').prop('checked') ? 'male' : 'female';
   const roles = [];
   $('#profile-roles input').each((i, input) => {
