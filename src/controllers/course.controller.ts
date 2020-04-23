@@ -19,6 +19,8 @@ import {
 import {Course} from '../models';
 import {CourseRepository} from '../repositories';
 
+
+
 export class CourseController {
   constructor(
     @repository(CourseRepository)
@@ -119,7 +121,7 @@ export class CourseController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.filter(Course, {exclude: 'where'}) filter?: FilterExcludingWhere<Course>
   ): Promise<Course> {
     return this.courseRepository.findById(id, filter);
@@ -133,7 +135,7 @@ export class CourseController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +156,7 @@ export class CourseController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() course: Course,
   ): Promise<void> {
     await this.courseRepository.replaceById(id, course);
@@ -167,7 +169,7 @@ export class CourseController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.number('id') id: string): Promise<void> {
     await this.courseRepository.deleteById(id);
   }
 }

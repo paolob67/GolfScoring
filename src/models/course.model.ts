@@ -6,11 +6,11 @@ import {Hole} from './hole.model';
 @model()
 export class Course extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  CourseId?: number;
+  CourseId: string;
 
   @property({
     type: 'string',

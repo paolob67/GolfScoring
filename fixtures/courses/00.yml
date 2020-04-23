@@ -1,0 +1,8 @@
+CourseName: Golf Nazionale
+CourseAddress:
+  - Street: Via Cassia
+  - City: Sutri
+  - Province: VT
+  - PostCode: 01015
+  - Country: Italy
+CourseHolesCount: 18

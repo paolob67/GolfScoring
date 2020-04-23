@@ -38,6 +38,7 @@ import {
 //  OrderRepository,
 //  ProductRepository,
 //  ShoppingCartRepository,
+  CourseRepository,
   UserRepository,
 } from './repositories';
 import {MyAuthenticationSequence} from './sequence';
@@ -155,6 +156,22 @@ export class GolfScoringApplication extends BootMixin(
     //     await productRepo.create(product);
     //   }
     // }
+
+    // Pre-populate courses
+    const courseRepo = await this.getRepository(CourseRepository);
+    await courseRepo.deleteAll();
+    const coursesDir = path.join(__dirname, '../fixtures/courses');
+    const courseFiles = fs.readdirSync(coursesDir);
+
+    for (const file of courseFiles) {
+       if (file.endsWith('.yml')) {
+         const courseFile = path.join(coursesDir, file);
+         console.log('  - ' + courseFile);
+         const yamlString = fs.readFileSync(courseFile, 'utf8');
+         const course = YAML.parse(yamlString);
+         await courseRepo.create(course);
+       }
+    }
 
     // Pre-populate users
     const passwordHasher = await this.get(
