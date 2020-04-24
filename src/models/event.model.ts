@@ -4,38 +4,38 @@ import {Course} from './course.model';
 @model()
 export class Event extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  EventId?: number;
+  id?: string;
 
   @property({
     type: 'string',
   })
-  EventName?: string;
+  name?: string;
 
   @property({
     type: 'string',
   })
-  EventType?: string;
+  type?: string;
 
   @property({
     type: 'date',
     required: true,
   })
-  EventDate: string;
+  date: string;
 
   @property({
     type: 'number',
     default: 1,
   })
-  NuoberOfRounds?: number;
+  numberOfRounds?: number;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  courseId?: number;
+  courseId?: string;
 
   constructor(data?: Partial<Event>) {
     super(data);

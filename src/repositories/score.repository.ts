@@ -5,7 +5,7 @@ import {inject} from '@loopback/core';
 
 export class ScoreRepository extends DefaultCrudRepository<
   Score,
-  typeof Score.prototype.ScoreId,
+  typeof Score.prototype.id,
   ScoreRelations
 > {
   constructor(

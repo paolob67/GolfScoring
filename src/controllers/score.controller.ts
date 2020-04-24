@@ -39,12 +39,12 @@ export class ScoreController {
         'application/json': {
           schema: getModelSchemaRef(Score, {
             title: 'NewScore',
-            exclude: ['ScoreId'],
+            exclude: ['id'],
           }),
         },
       },
     })
-    score: Omit<Score, 'ScoreId'>,
+    score: Omit<Score, 'id'>,
   ): Promise<Score> {
     return this.scoreRepository.create(score);
   }
@@ -119,7 +119,7 @@ export class ScoreController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.filter(Score, {exclude: 'where'}) filter?: FilterExcludingWhere<Score>
   ): Promise<Score> {
     return this.scoreRepository.findById(id, filter);
@@ -133,7 +133,7 @@ export class ScoreController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +154,7 @@ export class ScoreController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody() score: Score,
   ): Promise<void> {
     await this.scoreRepository.replaceById(id, score);
@@ -167,7 +167,7 @@ export class ScoreController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.scoreRepository.deleteById(id);
   }
 }

@@ -1,16 +1,16 @@
 import {DefaultCrudRepository} from '@loopback/repository';
-import {Event, EventRelations} from '../models';
+import {HoleScore, HoleScoreRelations} from '../models';
 import {MongoDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
-export class EventRepository extends DefaultCrudRepository<
-  Event,
-  typeof Event.prototype.id,
-  EventRelations
+export class HoleScoreRepository extends DefaultCrudRepository<
+  HoleScore,
+  typeof HoleScore.prototype.id,
+  HoleScoreRelations
 > {
   constructor(
     @inject('datasources.mongo') dataSource: MongoDataSource,
   ) {
-    super(Event, dataSource);
+    super(HoleScore, dataSource);
   }
 }

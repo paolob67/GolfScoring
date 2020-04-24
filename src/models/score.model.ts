@@ -4,45 +4,32 @@ import {HoleScore} from "./hole-score.model";
 @model()
 export class Score extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  ScoreId?: number;
+  id?: string;
 
   @property({
     type: 'date',
     required: true,
   })
-  StartTime: string;
+  startTime: string;
 
   @property({
     type: 'number',
   })
-  PlayingHandicap?: number;
+  playingHandicap?: number;
 
   @property({
     type: 'number',
   })
-  StartHole?: number;
+  startHole?: number;
 
   @property({
     type: 'number',
   })
-  Round?: number;
-
-  @property({
-    type: 'number',
-  })
-  eventId?: number;
-
-  @property({
-    type: 'string',
-  })
-  userId?: string;
-
-  @property.array(HoleScore)
-  HoleScore: HoleScore[];
+  round?: number;
 
   constructor(data?: Partial<Score>) {
     super(data);

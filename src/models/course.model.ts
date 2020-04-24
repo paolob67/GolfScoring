@@ -1,7 +1,7 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
 import {Address} from './address.model';
 import {Hole} from './hole.model';
-
+import {Event} from './event.model';
 
 @model()
 export class Course extends Entity {
@@ -30,6 +30,9 @@ export class Course extends Entity {
 
   @hasMany(() => Hole)
   holes: Hole[];
+
+  @hasMany(() => Event)
+  events: Event[];
 
   constructor(data?: Partial<Course>) {
     super(data);

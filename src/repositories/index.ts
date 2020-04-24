@@ -5,3 +5,4 @@ export * from './user.repository';
 export * from './user-credentials.repository';
 export * from './address.repository';
 export * from './hole.repository';
+export * from './hole-score.repository';

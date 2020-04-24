@@ -39,12 +39,12 @@ export class EventController {
         'application/json': {
           schema: getModelSchemaRef(Event, {
             title: 'NewEvent',
-            exclude: ['EventId'],
+            exclude: ['id'],
           }),
         },
       },
     })
-    event: Omit<Event, 'EventId'>,
+    event: Omit<Event, 'id'>,
   ): Promise<Event> {
     return this.eventRepository.create(event);
   }
@@ -119,7 +119,7 @@ export class EventController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @param.filter(Event, {exclude: 'where'}) filter?: FilterExcludingWhere<Event>
   ): Promise<Event> {
     return this.eventRepository.findById(id, filter);
@@ -133,7 +133,7 @@ export class EventController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +154,7 @@ export class EventController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.number('id') id: string,
     @requestBody() event: Event,
   ): Promise<void> {
     await this.eventRepository.replaceById(id, event);
@@ -167,7 +167,7 @@ export class EventController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.number('id') id: string): Promise<void> {
     await this.eventRepository.deleteById(id);
   }
 }

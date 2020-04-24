@@ -1,27 +1,40 @@
-import {Model, model, property} from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class HoleScore extends Model {
+export class HoleScore extends Entity {
+  @property({
+    type: 'string',
+    id: true,
+    generated: true,
+  })
+  id?: string;
+
   @property({
     type: 'number',
     required: true,
   })
-  Self: number;
+  holeNumber: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  self: number;
 
   @property({
     type: 'number',
   })
-  Marker?: number;
+  marker?: number;
 
   @property({
     type: 'string',
   })
-  MarkerId?: string;
+  markerId?: string;
 
   @property({
     type: 'number',
   })
-  Validated?: number;
+  validated?: number;
 
   constructor(data?: Partial<HoleScore>) {
     super(data);
