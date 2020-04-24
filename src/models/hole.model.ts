@@ -13,12 +13,12 @@ export class Hole extends Entity {
     type: 'number',
     required: true,
   })
-  holeNumber: number;
+  number: number;
 
   @property({
     type: 'number',
   })
-  holeLength?: number;
+  length?: number;
 
   @property({
     type: 'number',
@@ -28,7 +28,7 @@ export class Hole extends Entity {
   @property({
     type: 'number',
   })
-  holePar?: number;
+  par?: number;
 
   @property({
     type: 'string',

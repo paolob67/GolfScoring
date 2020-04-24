@@ -10,9 +10,9 @@ addressTable:
   longitude: 12.280114
   latitude: 42.209479
 holeTables:
-  - holeNumber: 1
-    holeLength: 250
-    holePar: 4
-  - holeNumber: 2
-    holeLength: 330
-    holePar: 5
+  - number: 1
+    length: 250
+    par: 4
+  - number: 2
+    length: 330
+    par: 5
