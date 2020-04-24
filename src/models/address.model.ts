@@ -1,40 +1,68 @@
-import {Model, model, property} from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Address extends Model {
-
+export class Address extends Entity {
   @property({
     type: 'string',
-    required: true,
+    id: true,
+    generated: true,
   })
-  Street: string;
-
-  @property({
-    type: 'string',
-  })
-  Civic?: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  City: string;
+  id: string;
 
   @property({
     type: 'string',
   })
-  Province?: string;
+  line1?: string;
 
   @property({
     type: 'string',
   })
-  PostCode?: string;
+  line2?: string;
 
   @property({
     type: 'string',
   })
-  Country?: string;
+  line3?: string;
 
+  @property({
+    type: 'string',
+  })
+  city?: string;
+
+  @property({
+    type: 'string',
+  })
+  province?: string;
+
+  @property({
+    type: 'string',
+  })
+  country?: string;
+
+  @property({
+    type: 'string',
+  })
+  postalCode?: string;
+
+  @property({
+    type: 'number',
+  })
+  latitude?: number;
+
+  @property({
+    type: 'number',
+  })
+  longitude?: number;
+
+  @property({
+    type: 'number',
+  })
+  telephone?: string;
+
+  @property({
+    type: 'string',
+  })
+  courseId?: string;
 
   constructor(data?: Partial<Address>) {
     super(data);

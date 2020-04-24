@@ -8,30 +8,28 @@ export class Course extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    generated: false,
   })
-  CourseId: string;
+  id: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  CourseName: string;
-
-  @property({
-    name: 'CourseAddress',
-  })
-  CourseAddress: Address;
+  name: string;
 
   @property({
     type: 'number',
     required: true,
     default: 18,
   })
-  CourseHolesCount: number;
+  holesCount: number;
 
   @property.array(Hole)
-  CourseHoles: Hole[];
+  holes: Hole[];
+
+  @hasOne(() => Address)
+  address: Address;
 
   constructor(data?: Partial<Course>) {
     super(data);
