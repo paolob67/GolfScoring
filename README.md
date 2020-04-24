@@ -43,6 +43,6 @@ $ npm run docker:run
 
 The API backend proveds access to the following datamodel.
 
-[![db](ProjectDocs/GolfScoringDB.png)]
+![db](ProjectDocs/GolfScoringDB.png)
 
 [![LoopBack](https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png)](http://loopback.io/)
