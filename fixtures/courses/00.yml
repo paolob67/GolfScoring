@@ -7,3 +7,12 @@ addressTable:
   province: VT
   postalCode: 01015
   country: Italy
+  longitude: 12.280114
+  latitude: 42.209479
+holeTables:
+  - holeNumber: 1
+    holeLength: 250
+    holePar: 4
+  - holeNumber: 2
+    holeLength: 330
+    holePar: 5

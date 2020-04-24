@@ -25,11 +25,11 @@ export class Course extends Entity {
   })
   holesCount: number;
 
-  @property.array(Hole)
-  holes: Hole[];
-
   @hasOne(() => Address)
   address: Address;
+
+  @hasMany(() => Hole)
+  holes: Hole[];
 
   constructor(data?: Partial<Course>) {
     super(data);

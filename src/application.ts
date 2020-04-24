@@ -40,6 +40,7 @@ import {
 //  ShoppingCartRepository,
   CourseRepository,
   AddressRepository,
+  HoleRepository,
   UserRepository,
 } from './repositories';
 import {MyAuthenticationSequence} from './sequence';
@@ -161,6 +162,7 @@ export class GolfScoringApplication extends BootMixin(
     // Pre-populate courses
     const courseRepo = await this.getRepository(CourseRepository);
     const addressRepo = await this.getRepository(AddressRepository);
+    const holeRepo = await this.getRepository(HoleRepository);
     await courseRepo.deleteAll();
     const coursesDir = path.join(__dirname, '../fixtures/courses');
     const courseFiles = fs.readdirSync(coursesDir);
@@ -172,9 +174,12 @@ export class GolfScoringApplication extends BootMixin(
          const yamlString = fs.readFileSync(courseFile, 'utf8');
          let course = YAML.parse(yamlString);
          const newCourse = await courseRepo.create(course.courseTable);
-         // new read the address must have same name as course
          course.addressTable.courseId = newCourse.id;
          await addressRepo.create(course.addressTable);
+         for (let hole of course.holeTables) {
+           hole.courseId = newCourse.id;
+           await holeRepo.create(hole);
+         }
        }
     }
 
