@@ -11,8 +11,10 @@ addressTable:
   latitude: 42.209479
 holeTables:
   - number: 1
-    length: 250
-    par: 4
+    length: 541
+    par: 5
+    holeHandicap: 5
   - number: 2
     length: 330
-    par: 5
+    par: 4
+    holeHandicap: 13
