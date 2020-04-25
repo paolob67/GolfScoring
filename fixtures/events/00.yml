@@ -1,0 +1,17 @@
+eventTable:
+  name: Golf Scoring Masters
+  type: World Championship
+  date: 2020-09-15
+  numberOfRounds: 2
+courseRef:
+  name: Golf Nazionale #we do not have the courseID here so we lookf for it using the name
+playersRef: #we use this to populate the scores collection
+  - email: paolo@golf.com #same here for the palyers
+    startTime: 2020-09-15T09:00:00Z
+    startHole: 1
+  - email: lorenzo@golf.com
+    startTime: 2020-09-15T09:00:00Z
+    startHole: 1
+  - email: tommaso@golf.com
+    startTime: 2020-09-15T09:00:00Z
+    startHole: 1

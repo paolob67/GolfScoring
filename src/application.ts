@@ -14,6 +14,7 @@ import {
 import {
   model,
   property,
+  Filter,
   RepositoryMixin,
   SchemaMigrationOptions,
 } from '@loopback/repository';
@@ -42,6 +43,8 @@ import {
   AddressRepository,
   HoleRepository,
   UserRepository,
+  EventRepository,
+  ScoreRepository,
 } from './repositories';
 import {MyAuthenticationSequence} from './sequence';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
@@ -144,26 +147,13 @@ export class GolfScoringApplication extends BootMixin(
   async migrateSchema(options?: SchemaMigrationOptions) {
     await super.migrateSchema(options);
 
-    // Pre-populate products
-    // const productRepo = await this.getRepository(ProductRepository);
-    // await productRepo.deleteAll();
-    // const productsDir = path.join(__dirname, '../fixtures/products');
-    //const productFiles = fs.readdirSync(productsDir);
-
-    // for (const file of productFiles) {
-    //   if (file.endsWith('.yml')) {
-    //     const productFile = path.join(productsDir, file);
-    //     const yamlString = fs.readFileSync(productFile, 'utf8');
-    //     const product = YAML.parse(yamlString);
-    //     await productRepo.create(product);
-    //   }
-    // }
-
     // Pre-populate courses
     const courseRepo = await this.getRepository(CourseRepository);
     const addressRepo = await this.getRepository(AddressRepository);
     const holeRepo = await this.getRepository(HoleRepository);
     await courseRepo.deleteAll();
+    await addressRepo.deleteAll();
+    await holeRepo.deleteAll();
     const coursesDir = path.join(__dirname, '../fixtures/courses');
     const courseFiles = fs.readdirSync(coursesDir);
 
@@ -172,11 +162,11 @@ export class GolfScoringApplication extends BootMixin(
          const courseFile = path.join(coursesDir, file);
          console.log('  - ' + courseFile);
          const yamlString = fs.readFileSync(courseFile, 'utf8');
-         let course = YAML.parse(yamlString);
-         const newCourse = await courseRepo.create(course.courseTable);
-         course.addressTable.courseId = newCourse.id;
-         await addressRepo.create(course.addressTable);
-         for (let hole of course.holeTables) {
+         const input = YAML.parse(yamlString);
+         const newCourse = await courseRepo.create(input.courseTable);
+         input.addressTable.courseId = newCourse.id;
+         await addressRepo.create(input.addressTable);
+         for (const hole of input.holeTables) {
            hole.courseId = newCourse.id;
            await holeRepo.create(hole);
          }
@@ -206,12 +196,44 @@ export class GolfScoringApplication extends BootMixin(
       }
     }
 
-    // Delete existing shopping carts
-    // const cartRepo = await this.getRepository(ShoppingCartRepository);
-    // await cartRepo.deleteAll();
+    // Prepopulate one Event and create score holeTables
+    const eventRepo = await this.getRepository(EventRepository);
+    const scoreRepo = await this.getRepository(ScoreRepository);
+    await eventRepo.deleteAll();
+    await scoreRepo.deleteAll();
+    const eventsDir = path.join(__dirname, '../fixtures/events');
+    const eventFiles = fs.readdirSync(eventsDir);
 
-    // Delete existing orders
-    // const orderRepo = await this.getRepository(OrderRepository);
-    //await orderRepo.deleteAll();
+    for (const file of eventFiles) {
+      if (file.endsWith('.yml')) {
+        const eventFile = path.join(eventsDir, file);
+        console.log('  - ' + eventFile);
+        const yamlString = fs.readFileSync(eventFile, 'utf8');
+        const input = YAML.parse(yamlString);
+        const filterStr = '{"where":{"name":"'+input.courseRef.name+'"}}';
+        const filter = JSON.parse(filterStr) as Filter;
+        const foundCourses = await courseRepo.find(filter);
+        input.eventTable.courseId = foundCourses[0].id;
+        const newEvent = await eventRepo.create(input.eventTable);
+        for (const player of input.playersRef) {
+          const filterStr = '{"where":{"email":"'+player.email+'"}}';
+          const filter = JSON.parse(filterStr) as Filter;
+          const foundPlayers = await userRepo.find(filter);
+          player.userId = foundPlayers[0].id;
+          for (let round = 1; round <= input.eventTable.numberOfRounds; round++) {
+            const newScore = {
+              startTime: player.startTime,
+              playingHandicap: 0, //TODO: is this a prop of the course or of the event?
+              startHole: player.startHole,
+              round: round,
+              eventId: newEvent.id,
+              userId: player.userId,
+            };
+            await scoreRepo.create(newScore);
+          }
+        }
+      }
+    }
+
   }
 }
