@@ -119,7 +119,7 @@ export class ScoreController {
     },
   })
   async findById(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @param.filter(Score, {exclude: 'where'}) filter?: FilterExcludingWhere<Score>
   ): Promise<Score> {
     return this.scoreRepository.findById(id, filter);
@@ -133,7 +133,7 @@ export class ScoreController {
     },
   })
   async updateById(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +154,7 @@ export class ScoreController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: string,
+    @param.path.string('id') id: string,
     @requestBody() score: Score,
   ): Promise<void> {
     await this.scoreRepository.replaceById(id, score);

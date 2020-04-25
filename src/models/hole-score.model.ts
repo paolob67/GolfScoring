@@ -36,6 +36,11 @@ export class HoleScore extends Entity {
   })
   validated?: number;
 
+  @property({
+    type: 'string',
+  })
+  scoreId?: string;
+
   constructor(data?: Partial<HoleScore>) {
     super(data);
   }

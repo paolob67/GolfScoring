@@ -1,4 +1,4 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
 import {HoleScore} from "./hole-score.model";
 
 @model()
@@ -30,6 +30,19 @@ export class Score extends Entity {
     type: 'number',
   })
   round?: number;
+
+  @property({
+    type: 'string',
+  })
+  userId?: string;
+
+  @property({
+    type: 'string',
+  })
+  eventId?: string;
+
+  @hasMany(() => HoleScore)
+  holeScores: HoleScore[];
 
   constructor(data?: Partial<Score>) {
     super(data);

@@ -1,5 +1,6 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
 import {Course} from './course.model';
+import {Score} from './score.model';
 
 @model()
 export class Event extends Entity {
@@ -36,6 +37,9 @@ export class Event extends Entity {
     type: 'string',
   })
   courseId?: string;
+
+  @hasMany(() => Score)
+  scores: Score[];
 
   constructor(data?: Partial<Event>) {
     super(data);
