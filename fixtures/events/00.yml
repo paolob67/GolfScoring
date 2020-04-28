@@ -6,12 +6,115 @@ eventTable:
 courseRef:
   name: Golf Nazionale #we do not have the courseID here so we lookf for it using the name
 playersRef: #we use this to populate the scores collection
-  - email: paolo@golf.com #same here for the palyers
+  - email: paolo@golf.com #same here for the players
     startTime: 2020-09-15T09:00:00Z
     startHole: 1
+    holeScores: #we use this to populate the scores cresults
+    - holeNumber: 1
+      self: 6
+      marker: 6
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 2
+      self: 3
+      marker: 3
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 3
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 4
+      self: 5
+      marker: 5
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 5
+      self: 5
+      marker: 5
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 6
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 7
+      self: 5
+      marker: 5
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 8
+      self: 3
+      marker: 3
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 9
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 10
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 11
+      self: 5
+      marker: 5
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 12
+      self: 3
+      marker: 3
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 13
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 14
+      self: 5
+      marker: 5
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 15
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 16
+      self: 6
+      marker: 6
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 17
+      self: 3
+      marker: 3
+      markerId: lorenzo@golf.com
+      validated: true
+    - holeNumber: 18
+      self: 4
+      marker: 4
+      markerId: lorenzo@golf.com
+      validated: true
   - email: lorenzo@golf.com
     startTime: 2020-09-15T09:00:00Z
     startHole: 1
+    holeScores: #we use this to populate the scores cresults
+    - holeNumber: 0
+      self: 5
+      marker: 5
+      markerId: tommaso@golf.com
+      validated: true
   - email: tommaso@golf.com
     startTime: 2020-09-15T09:00:00Z
     startHole: 1
+    holeScores: #we use this to populate the scores cresults
+    - holeNumber: 0
+      self: 5
+      marker: 5
+      markerId: paolo@golf.com
+      validated: true

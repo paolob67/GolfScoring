@@ -18,3 +18,67 @@ holeTables:
     length: 330
     par: 4
     holeHandicap: 13
+  - number: 3
+    length: 169
+    par: 3
+    holeHandicap: 17
+  - number: 4
+    length: 395
+    par: 4
+    holeHandicap: 1
+  - number: 5
+    length: 397
+    par: 4
+    holeHandicap: 3
+  - number: 6
+    length: 360
+    par: 4
+    holeHandicap: 7
+  - number: 7
+    length: 514
+    par: 5
+    holeHandicap: 9
+  - number: 8
+    length: 351
+    par: 4
+    holeHandicap: 11
+  - number: 9
+    length: 150
+    par: 3
+    holeHandicap: 18
+  - number: 10
+    length: 374
+    par: 4
+    holeHandicap: 4
+  - number: 11
+    length: 371
+    par: 4
+    holeHandicap: 12
+  - number: 12
+    length: 214
+    par: 3
+    holeHandicap: 14
+  - number: 13
+    length: 337
+    par: 4
+    holeHandicap: 15
+  - number: 14
+    length: 490
+    par: 5
+    holeHandicap: 8
+  - number: 15
+    length: 412
+    par: 4
+    holeHandicap: 2
+  - number: 16
+    length: 343
+    par: 4
+    holeHandicap: 16
+  - number: 17
+    length: 216
+    par: 3
+    holeHandicap: 6
+  - number: 18
+    length: 498
+    par: 5
+    holeHandicap: 10

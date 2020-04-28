@@ -45,6 +45,7 @@ import {
   UserRepository,
   EventRepository,
   ScoreRepository,
+  HoleScoreRepository,
 } from './repositories';
 import {MyAuthenticationSequence} from './sequence';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
@@ -199,8 +200,10 @@ export class GolfScoringApplication extends BootMixin(
     // Prepopulate one Event and create score holeTables
     const eventRepo = await this.getRepository(EventRepository);
     const scoreRepo = await this.getRepository(ScoreRepository);
+    const holescoreRepo = await this.getRepository(HoleScoreRepository);
     await eventRepo.deleteAll();
     await scoreRepo.deleteAll();
+    await holescoreRepo.deleteAll();
     const eventsDir = path.join(__dirname, '../fixtures/events');
     const eventFiles = fs.readdirSync(eventsDir);
 
@@ -229,7 +232,18 @@ export class GolfScoringApplication extends BootMixin(
               eventId: newEvent.id,
               userId: player.userId,
             };
-            await scoreRepo.create(newScore);
+            const newScoreRec = await scoreRepo.create(newScore);
+            for (const holeScore of player.holeScores) {
+              const newHoleScore = {
+                holeNumber: holeScore.holeNumber,
+                self: holeScore.self,
+                marker: holeScore.marker,
+                markerId: holeScore.markerId,
+                validated: holeScore.validated,
+                scoreId: newScoreRec.id,
+              };
+              await holescoreRepo.create(newHoleScore);
+            }
           }
         }
       }

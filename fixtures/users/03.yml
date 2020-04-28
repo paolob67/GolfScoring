@@ -3,3 +3,6 @@ firstName: Jane
 lastName: Doe
 password: jane1234
 roles: ['player']
+clubName: Golf Nazionale
+card: 123456
+handicap: 6

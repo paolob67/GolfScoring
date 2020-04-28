@@ -3,3 +3,6 @@ firstName: Tommaso
 lastName: Golf
 password: tommaso123
 roles: ['player']
+clubName: Olgiata
+card: 654321
+handicap: 0
