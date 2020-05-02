@@ -29,6 +29,7 @@ import {UserProfile, securityId, SecurityBindings} from '@loopback/security';
 import {
   CredentialsRequestBody,
   UserProfileSchema,
+  UserPublicProfileSchema,
 } from './specs/user-controller.specs';
 import {Credentials} from '../repositories/user.repository';
 import {PasswordHasher} from '../services/hash.password.bcryptjs';
@@ -183,6 +184,23 @@ export class UserController {
   async findById(@param.path.string('userId') userId: string): Promise<User> {
     return this.userRepository.findById(userId);
   }
+
+  @get('/users/public/{userId}', {
+    responses: {
+      '200': {
+        description: 'User public data',
+        content: {
+          'application/json': {
+            schema: UserPublicProfileSchema,
+          },
+        },
+      },
+    },
+  })
+  async findPublicById(@param.path.string('userId') userId: string): Promise<User> {
+    return this.userRepository.findById(userId, {fields: {id: true, firstName: true, lastName: true}});
+  }
+
 
   @get('/users/me', {
     security: OPERATION_SECURITY_SPEC,
