@@ -93,6 +93,7 @@ export class GolfScoringApplication extends BootMixin(
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
+    //this.static('/', path.join(__dirname, '../www'));
 
     // Customize @loopback/rest-explorer configuration here
     this.bind(RestExplorerBindings.CONFIG).to({
