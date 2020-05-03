@@ -47,6 +47,7 @@ import {
   ScoreRepository,
   HoleScoreRepository,
   LeaderboardRepository,
+  SlopeRepository,
 } from './repositories';
 import {MyAuthenticationSequence} from './sequence';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
@@ -154,9 +155,11 @@ export class GolfScoringApplication extends BootMixin(
     const courseRepo = await this.getRepository(CourseRepository);
     const addressRepo = await this.getRepository(AddressRepository);
     const holeRepo = await this.getRepository(HoleRepository);
+    const slopeRepo = await this.getRepository(SlopeRepository);
     await courseRepo.deleteAll();
     await addressRepo.deleteAll();
     await holeRepo.deleteAll();
+    await slopeRepo.deleteAll();
     const coursesDir = path.join(__dirname, '../fixtures/courses');
     const courseFiles = fs.readdirSync(coursesDir);
 
@@ -174,6 +177,97 @@ export class GolfScoringApplication extends BootMixin(
            await holeRepo.create(hole);
          }
        }
+    }
+
+    const clubDir = path.join(__dirname, '../fixtures/clubs');
+    const clubFiles = fs.readdirSync(clubDir);
+
+    for (const file of clubFiles) {
+      if (file.endsWith('.yml')) {
+        const clubFile = path.join(clubDir, file);
+        console.log('  - ' + clubFile);
+        const yamlString = fs.readFileSync(clubFile, 'utf8');
+        const input = YAML.parse(yamlString);
+        for (const club of input) {
+          club.holesCount = 18;
+          club.out = 36;
+          club.in = 36;
+          club.stroke = 72;
+          await courseRepo.create(club);
+        }
+      }
+    }
+
+    const slopeDir = path.join(__dirname, '../fixtures/slopes');
+    const slopeFiles = fs.readdirSync(slopeDir);
+
+    for (const file of slopeFiles) {
+      if (file.endsWith('.yml')) {
+        const slopeFile = path.join(slopeDir, file);
+        console.log('  - ' + slopeFile);
+        const yamlString = fs.readFileSync(slopeFile, 'utf8');
+        const input = YAML.parse(yamlString);
+        for (const tmpSlope of input) {
+          const filterStr = '{"where":{"name":"'+tmpSlope.Circolo+'"}}';
+          const filter = JSON.parse(filterStr) as Filter;
+          const foundCourses = await courseRepo.find(filter);
+          let slope : any = {};
+          slope.courseId = foundCourses[0].id;
+          slope.name = tmpSlope.name;
+          slope.par = tmpSlope.par;
+          if (tmpSlope.par > 40) {
+            slope.holesCount = 18;
+          } else {
+            slope.holesCount = 9;
+          }
+          if (tmpSlope.neroCR != null) {
+            slope.neroCR = tmpSlope.neroCR;
+          }
+          if (tmpSlope.neroSlope != null) {
+            slope.neroSlope = tmpSlope.neroSlope;
+          }
+          if (tmpSlope.biancoCR != null) {
+            slope.biancoCR = tmpSlope.biancoCR;
+          }
+          if (tmpSlope.biancoSlope != null) {
+            slope.biancoSlope = tmpSlope.biancoSlope;
+          }
+          if (tmpSlope.gialloCR != null) {
+            slope.gialloCR = tmpSlope.gialloCR;
+          }
+          if (tmpSlope.gialloSlope != null) {
+            slope.gialloSlope = tmpSlope.gialloSlope;
+          }
+          if (tmpSlope.verdeCR != null) {
+            slope.verdeCR = tmpSlope.verdeCR;
+          }
+          if (tmpSlope.verdeSlope != null) {
+            slope.verdeSlope = tmpSlope.verdeSlope;
+          }
+          if (tmpSlope.bluCR != null) {
+            slope.bluCR = tmpSlope.bluCR;
+          }
+          if (tmpSlope.bluSlope != null) {
+            slope.bluSlope = tmpSlope.bluSlope;
+          }
+          if (tmpSlope.rossoCR != null) {
+            slope.rossoCR = tmpSlope.rossoCR;
+          }
+          if (tmpSlope.rossoSlope != null) {
+            slope.rossoSlope = tmpSlope.rossoSlope;
+          }
+          if (tmpSlope.arancioCR != null) {
+            slope.arancioCR = tmpSlope.arancioCR;
+          }
+          if (tmpSlope.arancioSlope != null) {
+            slope.arancioSlope = tmpSlope.arancioSlope;
+          }
+          const newEvent = await slopeRepo.create(slope);
+/*
+          console.log('nero: ' + tmpSlope.neroCR);
+*/
+        }
+      }
     }
 
     // Pre-populate users

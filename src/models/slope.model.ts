@@ -18,6 +18,13 @@ export class Slope extends Entity {
   @property({
     type: 'number',
     required: true,
+    default: 18,
+  })
+  holesCount: number;
+
+  @property({
+    type: 'number',
+    required: true,
   })
   par: number;
 
