@@ -6,3 +6,4 @@ export * from './user-credentials.repository';
 export * from './address.repository';
 export * from './hole.repository';
 export * from './hole-score.repository';
+export * from './leaderboard.repository';

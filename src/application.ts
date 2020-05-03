@@ -46,6 +46,7 @@ import {
   EventRepository,
   ScoreRepository,
   HoleScoreRepository,
+  LeaderboardRepository,
 } from './repositories';
 import {MyAuthenticationSequence} from './sequence';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
@@ -198,13 +199,15 @@ export class GolfScoringApplication extends BootMixin(
       }
     }
 
-    // Prepopulate one Event and create score holeTables
+    // Prepopulate one Event and create leaderboard score holeTables 
     const eventRepo = await this.getRepository(EventRepository);
     const scoreRepo = await this.getRepository(ScoreRepository);
     const holescoreRepo = await this.getRepository(HoleScoreRepository);
+    const leaderboardRepo = await this.getRepository(LeaderboardRepository);
     await eventRepo.deleteAll();
     await scoreRepo.deleteAll();
     await holescoreRepo.deleteAll();
+    await leaderboardRepo.deleteAll();
     const eventsDir = path.join(__dirname, '../fixtures/events');
     const eventFiles = fs.readdirSync(eventsDir);
 
@@ -224,23 +227,47 @@ export class GolfScoringApplication extends BootMixin(
           const filter = JSON.parse(filterStr) as Filter;
           const foundPlayers = await userRepo.find(filter);
           player.userId = foundPlayers[0].id;
+          const newLeaderboard = {
+            rounds: input.eventTable.numberOfRounds,
+            playingHandicap: player.handicap,
+            eventId: newEvent.id,
+            userId: player.userId,
+            courseId: input.eventTable.courseId,
+          };
+          const newLeaderboardRec = await leaderboardRepo.create(newLeaderboard);
           for (let round = 1; round <= input.eventTable.numberOfRounds; round++) {
             const newScore = {
               startTime: player.startTime,
-              playingHandicap: 0, //TODO: is this a prop of the course or of the event?
+              playingHandicap: player.handicap,
               startHole: player.startHole,
               round: round,
               eventId: newEvent.id,
               userId: player.userId,
+              leaderboardId: newLeaderboardRec.id,
             };
             const newScoreRec = await scoreRepo.create(newScore);
+            const quotient = Math.floor(player.handicap/18);
+            const remainder = player.handicap % 18;
+
             for (const holeScore of player.holeScores) {
+              let holeHandicap = 0;
+              if (holeScore.holeNumber !== 0) {
+                const filterStr = '{"fields": {"holeHandicap": true, "par": true}, "where":{"courseId":"'+input.eventTable.courseId+'", "number":'+holeScore.holeNumber+'}}';
+                const filter = JSON.parse(filterStr) as Filter;
+                const foundHandicap = await holeRepo.find(filter);
+                if (foundHandicap[0].holeHandicap !== undefined && foundHandicap[0].par !== undefined) {
+                  let holeHandy = foundHandicap[0].holeHandicap;
+                  let par = foundHandicap[0].par;
+                  holeHandicap=(remainder<holeHandy)?(par+quotient):(par+quotient+1)
+                }
+              }
               const newHoleScore = {
                 holeNumber: holeScore.holeNumber,
                 self: holeScore.self,
                 marker: holeScore.marker,
                 markerId: holeScore.markerId,
                 validated: holeScore.validated,
+                par: holeHandicap,
                 scoreId: newScoreRec.id,
               };
               await holescoreRepo.create(newHoleScore);

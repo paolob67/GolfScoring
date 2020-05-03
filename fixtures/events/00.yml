@@ -9,6 +9,7 @@ playersRef: #we use this to populate the scores collection
   - email: paolo@golf.com #same here for the players
     startTime: 2020-09-15T09:00:00Z
     startHole: 1
+    handicap: 6
     holeScores: #we use this to populate the scores cresults
     - holeNumber: 1
       self: 6
@@ -103,17 +104,189 @@ playersRef: #we use this to populate the scores collection
   - email: lorenzo@golf.com
     startTime: 2020-09-15T09:00:00Z
     startHole: 1
+    handicap: 0
     holeScores: #we use this to populate the scores cresults
-    - holeNumber: 0
+    - holeNumber: 1
       self: 5
       marker: 5
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 2
+      self: 3
+      marker: 3
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 3
+      self: 3
+      marker: 3
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 4
+      self: 6
+      marker: 6
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 5
+      self: 4
+      marker: 4
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 6
+      self: 5
+      marker: 5
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 7
+      self: 5
+      marker: 5
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 8
+      self: 3
+      marker: 3
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 9
+      self: 3
+      marker: 3
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 10
+      self: 4
+      marker: 4
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 11
+      self: 6
+      marker: 6
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 12
+      self: 2
+      marker: 2
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 13
+      self: 4
+      marker: 4
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 14
+      self: 7
+      marker: 7
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 15
+      self: 3
+      marker: 3
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 16
+      self: 5
+      marker: 5
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 17
+      self: 3
+      marker: 3
+      markerId: tommaso@golf.com
+      validated: true
+    - holeNumber: 18
+      self: 6
+      marker: 6
       markerId: tommaso@golf.com
       validated: true
   - email: tommaso@golf.com
     startTime: 2020-09-15T09:00:00Z
     startHole: 1
+    handicap: 3
     holeScores: #we use this to populate the scores cresults
-    - holeNumber: 0
+    - holeNumber: 1
+      self: 5
+      marker: 5
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 2
+      self: 4
+      marker: 4
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 3
+      self: 5
+      marker: 5
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 4
+      self: 6
+      marker: 6
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 5
+      self: 4
+      marker: 4
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 6
+      self: 4
+      marker: 4
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 7
+      self: 5
+      marker: 5
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 8
+      self: 4
+      marker: 4
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 9
+      self: 2
+      marker: 2
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 10
+      self: 4
+      marker: 4
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 11
+      self: 4
+      marker: 4
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 12
+      self: 3
+      marker: 3
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 13
+      self: 5
+      marker: 5
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 14
+      self: 7
+      marker: 7
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 15
+      self: 5
+      marker: 5
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 16
+      self: 6
+      marker: 6
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 17
+      self: 2
+      marker: 2
+      markerId: paolo@golf.com
+      validated: true
+    - holeNumber: 18
       self: 5
       marker: 5
       markerId: paolo@golf.com
