@@ -14,6 +14,17 @@ export const UserProfileSchema = {
   },
 };
 
+// needed to extend the users api with ont to get public data for players
+export const UserPublicProfileSchema = {
+  type: 'object',
+  required: ['id'],
+  properties: {
+    id: {type: 'string'},
+    firstName: {type: 'string'},
+    lastName: {type: 'string'},
+  },
+};
+
 // TODO(jannyHou): This is a workaround to manually
 // describe the request body of 'Users/login'.
 // We should either create a Credential model, or
