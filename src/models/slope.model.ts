@@ -91,6 +91,11 @@ export class Slope extends Entity {
   })
   arancioSlope?: number;
 
+  @property({
+    type: 'string',
+  })
+  courseId?: string;
+
   // Define well-known properties here
 
   // Indexer property to allow additional data

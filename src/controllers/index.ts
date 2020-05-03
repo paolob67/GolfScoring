@@ -16,3 +16,5 @@ export * from './leaderboard-course.controller';
 export * from './leaderboard-user.controller';
 export * from './leaderboard-score.controller';
 export * from './leaderboard.controller';
+export * from './course-slope.controller';
+export * from './slope.controller';

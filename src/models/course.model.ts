@@ -3,6 +3,7 @@ import {Address} from './address.model';
 import {Hole} from './hole.model';
 import {Event} from './event.model';
 import {Leaderboard} from './leaderboard.model';
+import {Slope} from './slope.model';
 
 @model()
 export class Course extends Entity {
@@ -58,6 +59,9 @@ export class Course extends Entity {
 
   @hasMany(() => Leaderboard)
   leaderboard: Leaderboard[];
+
+  @hasMany(() => Slope)
+  slopes: Slope[];
 
   constructor(data?: Partial<Course>) {
     super(data);
