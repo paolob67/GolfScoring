@@ -6,3 +6,5 @@ export * from './hole-score.model';
 export * from './score.model';
 export * from './user.model';
 export * from './user-credentials.model';
+export * from './leaderboard.model';
+export * from './slope.model';

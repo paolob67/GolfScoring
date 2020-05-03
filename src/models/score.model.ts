@@ -37,9 +37,59 @@ export class Score extends Entity {
   userId?: string;
 
   @property({
+    type: 'number',
+  })
+  outHoles?: number;
+
+  @property({
+    type: 'number',
+  })
+  inHoles?: number;
+
+  @property({
+    type: 'number',
+  })
+  stroke?: number;
+
+  @property({
+    type: 'number',
+  })
+  thru?: number;
+
+  @property({
+    type: 'number',
+  })
+  total?: number;
+
+  @property({
+    type: 'number',
+  })
+  net?: number;
+
+  @property({
+    type: 'number',
+  })
+  stableford?: number;
+
+  @property({
     type: 'string',
   })
   eventId?: string;
+
+  @property({
+    type: 'string',
+  })
+  leaderboardId?: string;
+
+  @property({
+    type: 'string',
+  })
+  selfCard?: string;
+
+  @property({
+    type: 'string',
+  })
+  markerCard?: string;
 
   @hasMany(() => HoleScore)
   holeScores: HoleScore[];

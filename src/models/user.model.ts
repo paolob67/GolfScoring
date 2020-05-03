@@ -8,6 +8,7 @@ import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
 import {UserCredentials} from './user-credentials.model';
 import {Score} from './score.model';
 import {HoleScore} from './hole-score.model';
+import {Leaderboard} from './leaderboard.model';
 
 // import {ShoppingCart} from './shopping-cart.model';
 
@@ -83,6 +84,9 @@ export class User extends Entity {
 
   @hasMany(() => HoleScore, {keyTo: 'markerId'})
   scoreMarks: HoleScore[];
+
+  @hasMany(() => Leaderboard)
+  leaderboard: Leaderboard[];
   // orders: Order[];
   @hasOne(() => UserCredentials)
   userCredentials: UserCredentials;

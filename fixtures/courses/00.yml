@@ -1,6 +1,9 @@
 courseTable:
   name: Golf Nazionale
   holesCount: 18
+  out: 36
+  in: 36
+  stroke: 72
 addressTable:
   line1: Via Cassia
   city: Sutri
