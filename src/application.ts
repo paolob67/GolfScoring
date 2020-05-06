@@ -329,9 +329,10 @@ export class GolfScoringApplication extends BootMixin(
             courseId: input.eventTable.courseId,
           };
           const newLeaderboardRec = await leaderboardRepo.create(newLeaderboard);
+          let timeStart=player.startTime;
           for (let round = 1; round <= input.eventTable.numberOfRounds; round++) {
             const newScore = {
-              startTime: player.startTime,
+              startTime: timeStart,
               playingHandicap: player.handicap,
               startHole: player.startHole,
               round: round,
@@ -339,6 +340,11 @@ export class GolfScoringApplication extends BootMixin(
               userId: player.userId,
               leaderboardId: newLeaderboardRec.id,
             };
+            let today = new Date();
+            let dd = today.getDate();
+            let mm = today.getMonth();
+            let yyyy = today.getFullYear();
+            timeStart = new Date(yyyy, mm, dd, 11, 0, 0);  
             const newScoreRec = await scoreRepo.create(newScore);
             const quotient = Math.floor(player.handicap/18);
             const remainder = player.handicap % 18;
