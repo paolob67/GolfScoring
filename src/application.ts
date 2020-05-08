@@ -2,6 +2,7 @@
 // Node module: loopback4-example-shopping
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
+////
 
 import {AuthenticationComponent} from '@loopback/authentication';
 import {AuthorizationComponent} from '@loopback/authorization';
