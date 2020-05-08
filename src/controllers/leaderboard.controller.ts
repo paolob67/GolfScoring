@@ -25,7 +25,7 @@ export class LeaderboardController {
     public leaderboardRepository : LeaderboardRepository,
   ) {}
 
-  @post('/leaderbord', {
+  @post('/leaderboard', {
     responses: {
       '200': {
         description: 'Leaderboard model instance',
@@ -49,7 +49,7 @@ export class LeaderboardController {
     return this.leaderboardRepository.create(leaderboard);
   }
 
-  @get('/leaderbord/count', {
+  @get('/leaderboard/count', {
     responses: {
       '200': {
         description: 'Leaderboard model count',
@@ -63,7 +63,7 @@ export class LeaderboardController {
     return this.leaderboardRepository.count(where);
   }
 
-  @get('/leaderbord', {
+  @get('/leaderboard', {
     responses: {
       '200': {
         description: 'Array of Leaderboard model instances',
@@ -84,7 +84,7 @@ export class LeaderboardController {
     return this.leaderboardRepository.find(filter);
   }
 
-  @patch('/leaderbord', {
+  @patch('/leaderboard', {
     responses: {
       '200': {
         description: 'Leaderboard PATCH success count',
@@ -106,7 +106,7 @@ export class LeaderboardController {
     return this.leaderboardRepository.updateAll(leaderboard, where);
   }
 
-  @get('/leaderbord/{id}', {
+  @get('/leaderboard/{id}', {
     responses: {
       '200': {
         description: 'Leaderboard model instance',
@@ -125,7 +125,7 @@ export class LeaderboardController {
     return this.leaderboardRepository.findById(id, filter);
   }
 
-  @patch('/leaderbord/{id}', {
+  @patch('/leaderboard/{id}', {
     responses: {
       '204': {
         description: 'Leaderboard PATCH success',
@@ -146,7 +146,7 @@ export class LeaderboardController {
     await this.leaderboardRepository.updateById(id, leaderboard);
   }
 
-  @put('/leaderbord/{id}', {
+  @put('/leaderboard/{id}', {
     responses: {
       '204': {
         description: 'Leaderboard PUT success',
@@ -160,7 +160,7 @@ export class LeaderboardController {
     await this.leaderboardRepository.replaceById(id, leaderboard);
   }
 
-  @del('/leaderbord/{id}', {
+  @del('/leaderboard/{id}', {
     responses: {
       '204': {
         description: 'Leaderboard DELETE success',

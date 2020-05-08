@@ -138,6 +138,7 @@ export class GolfScoringApplication extends BootMixin(
   }
 
   async start() {
+    console.log("Golf Scoring Server - v.", pkg.version);
     // Use `databaseSeeding` flag to control if products/users should be pre
     // populated into the database. Its value is default to `true`.
     if (this.options.databaseSeeding !== false) {
