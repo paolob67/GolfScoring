@@ -38,7 +38,7 @@ export class ScoreHoleScoreController {
       },
     },
   })
-  async update(
+  async updateScore(
     @param.path.string('id') id: string,
   ): Promise<Score> {
 

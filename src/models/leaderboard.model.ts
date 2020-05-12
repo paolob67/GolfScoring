@@ -17,10 +17,17 @@ export class Leaderboard extends Entity {
   })
   rounds: number;
   @property({
-    type: 'number',
-    required: true,
+    type: 'date',
   })
-  playingHandicap: number;
+  startTime?: string;
+  @property({
+    type: 'number',
+  })
+  playingHandicap?: number;
+  @property({
+    type: 'number',
+  })
+  startHole?: number;
   @property({
     type: 'number',
   })

@@ -46,7 +46,6 @@ export class LeaderboardScoreController {
     const scores = await this.leaderboardRepository.scores(id).find(filter);
     let leaderboard: any ={};
     if (scores.length > 0) {
-      console.log('\n> scores' + JSON.stringify(scores));
       let stroke = 0;
       let total = 0;
       leaderboard.thru = scores[scores.length-1].thru;

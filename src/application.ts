@@ -323,15 +323,17 @@ export class GolfScoringApplication extends BootMixin(
           const filter = JSON.parse(filterStr) as Filter;
           const foundPlayers = await userRepo.find(filter);
           player.userId = foundPlayers[0].id;
+          let timeStart=player.startTime;
           const newLeaderboard = {
             rounds: input.eventTable.numberOfRounds,
             playingHandicap: player.handicap,
             eventId: newEvent.id,
             userId: player.userId,
             courseId: input.eventTable.courseId,
+            startTime: timeStart,
+            startHole: player.startHole,
           };
           const newLeaderboardRec = await leaderboardRepo.create(newLeaderboard);
-          let timeStart=player.startTime;
           for (let round = 1; round <= input.eventTable.numberOfRounds; round++) {
             const newScore = {
               startTime: timeStart,

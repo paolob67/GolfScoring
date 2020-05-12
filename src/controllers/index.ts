@@ -18,3 +18,4 @@ export * from './leaderboard-score.controller';
 export * from './leaderboard.controller';
 export * from './course-slope.controller';
 export * from './slope.controller';
+export * from './score-user.controller';

@@ -288,6 +288,6 @@ playersRef: #we use this to populate the scores collection
       validated: true
     - holeNumber: 18
       self: 5
-      marker: 5
+#      marker: 5
       markerId: paolo@golf.com
       validated: true

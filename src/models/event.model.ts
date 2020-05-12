@@ -37,7 +37,7 @@ export class Event extends Entity {
   @property({
     type: 'string',
   })
-  courseId?: string;
+  courseId: string;
 
   @hasMany(() => Score)
   scores: Score[];
