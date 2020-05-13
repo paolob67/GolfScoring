@@ -25,6 +25,28 @@ export class ScoreController {
     public scoreRepository : ScoreRepository,
   ) {}
 
+  @get('/scores/{id}/update', {
+    responses: {
+      '200': {
+        description: 'Updated metadata for Score',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Score)
+          },
+        },
+      },
+    },
+  })
+  async updateScore(
+    @param.path.string('id') id: string,
+  ): Promise<Score> {
+
+    return this.scoreRepository.updateScoreResults(id);
+  }
+
+
+
+
   @post('/scores', {
     responses: {
       '200': {

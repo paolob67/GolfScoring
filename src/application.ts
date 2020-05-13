@@ -375,8 +375,11 @@ export class GolfScoringApplication extends BootMixin(
                 scoreId: newScoreRec.id,
               };
               await holescoreRepo.create(newHoleScore);
+              await scoreRepo.updateScoreResults(<string>newScoreRec.id);
+
             }
           }
+          await leaderboardRepo.updateLeaderboardResults(<string>newLeaderboardRec.id);
         }
       }
     }

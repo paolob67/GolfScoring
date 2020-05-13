@@ -25,6 +25,25 @@ export class LeaderboardController {
     public leaderboardRepository : LeaderboardRepository,
   ) {}
 
+  @get('/leaderboard/{id}/update', {
+    responses: {
+      '200': {
+        description: 'Updated metadata for Leaderboard',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Leaderboard)
+          },
+        },
+      },
+    },
+  })
+  async update(
+    @param.path.string('id') id: string,
+  ): Promise<Leaderboard> {
+
+    return this.leaderboardRepository.updateLeaderboardResults(id);
+  }
+
   @post('/leaderboard', {
     responses: {
       '200': {
