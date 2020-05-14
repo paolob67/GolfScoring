@@ -274,6 +274,36 @@ export class EventScoreController {
     @param.path.string('id') id: string,
     @param.path.string('roundId') roundId: number,
   ): Promise<RoundScores> {
+
+    const filter = { where: {and: [{eventId: id}, {round: roundId}]}, include: [{relation: 'holeScores'}, {relation: 'user'}]};
+    return this.collectScores(id, filter);
+  }
+
+  @get('/events/{id}/playerscores/{userId}', {
+    responses: {
+      '200': {
+        description: 'Array of round scores has many DetailedScore',
+        content: {
+          'application/json': {
+            schema: {type: 'array', items: getModelSchemaRef(DetailedScore)},
+          },
+        },
+      },
+    },
+  })
+  async playerscores(
+    @param.path.string('id') id: string,
+    @param.path.string('userId') userId: string,
+  ): Promise<RoundScores> {
+
+    const filter = { where: {and: [{eventId: id}, {userId: userId}]}, include: [{relation: 'holeScores'}, {relation: 'user'}]};
+    return this.collectScores(id, filter);
+  }
+
+
+
+
+  async collectScores(id: string, scoreFilter?: Filter<Score>): Promise<RoundScores> {
     let scores: any;
     let hole: HoleScore;
     let holePar: number;
@@ -294,8 +324,7 @@ export class EventScoreController {
       }
     } 
 
-    const filter2 = { where: {and: [{eventId: id}, {round: 1}]}, include: [{relation: 'holeScores'}, {relation: 'user'}]};
-    scores = await this.scoreRepository.find(filter2);
+    scores = await this.scoreRepository.find(scoreFilter);
 
 
 
