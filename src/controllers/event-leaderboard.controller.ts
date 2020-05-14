@@ -41,6 +41,10 @@ export class DetailedLeaderboard extends Entity {
   @property({
     type: 'string',
   })
+  userId: string;
+  @property({
+    type: 'string',
+  })
   startTime?: string;
   @property({
     type: 'string',
@@ -176,6 +180,7 @@ export class EventLeaderboardController {
       let aLeaderboard: any = {};
 
       aLeaderboard.player = leaderboard[i].user.firstName + " " + leaderboard[i].user.lastName;
+      aLeaderboard.userId = leaderboard[i].user.id;
       aLeaderboard.startTime = leaderboard[i].startTime;
       aLeaderboard.startHole = "" + leaderboard[i].startHole;
       aLeaderboard.playingHandicap = "" + leaderboard[i].playingHandicap;

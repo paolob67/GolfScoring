@@ -19,11 +19,12 @@ import {
   Score,
   HoleScore,
 } from '../models';
-import {ScoreRepository} from '../repositories';
+import {ScoreRepository, LeaderboardRepository} from '../repositories';
 
 export class ScoreHoleScoreController {
   constructor(
     @repository(ScoreRepository) protected scoreRepository: ScoreRepository,
+    @repository(LeaderboardRepository) protected leaderboardRepository: LeaderboardRepository,
   ) { }
 
   @get('/scores/{id}/hole-scores', {
@@ -68,9 +69,12 @@ export class ScoreHoleScoreController {
     }) holeScore: Omit<HoleScore, 'id'>,
   ): Promise<HoleScore> {
     let returnObj: any;
+    let score: any ={};
     let receivedId: string = <string>id;
     returnObj = await this.scoreRepository.holeScores(id).create(holeScore);
     this.scoreRepository.updateScoreResults(receivedId);
+    score = await this.scoreRepository.updateScoreResults(receivedId);
+    this.leaderboardRepository.updateLeaderboardResults(<string>score.leaderboardId);
     return returnObj;
   }
 
@@ -95,9 +99,12 @@ export class ScoreHoleScoreController {
     @param.query.object('where', getWhereSchemaFor(HoleScore)) where?: Where<HoleScore>,
   ): Promise<Count> {
     let returnObj: any;
+    let score: any ={};
     let receivedId: string = <string>id;
     returnObj = await this.scoreRepository.holeScores(id).patch(holeScore, where);
     this.scoreRepository.updateScoreResults(receivedId);
+    score = await this.scoreRepository.updateScoreResults(receivedId);
+    this.leaderboardRepository.updateLeaderboardResults(<string>score.leaderboardId);
     return returnObj;
   }
 
@@ -114,9 +121,11 @@ export class ScoreHoleScoreController {
     @param.query.object('where', getWhereSchemaFor(HoleScore)) where?: Where<HoleScore>,
   ): Promise<Count> {
     let returnObj: any;
+    let score: any ={};
     let receivedId: string = <string>id;
     returnObj = await this.scoreRepository.holeScores(id).delete(where);
-    this.scoreRepository.updateScoreResults(receivedId);
+    score = await this.scoreRepository.updateScoreResults(receivedId);
+    this.leaderboardRepository.updateLeaderboardResults(<string>score.leaderboardId);
     return returnObj;
   }
 }

@@ -65,13 +65,11 @@ export class ScoreRepository extends DefaultCrudRepository<
       score.net = net;
       score.stableford = stableford;
       await this.updateById(id, score);
-/*
       const filter = { fields: { leaderboardId: true}};
       leaderboardId = <any>await this.findById(id, filter);
       if (leaderboardId) {
-        this.LeaderboardRepository.updateLeaderboardResults(leaderboardId);
+        score.leaderboardId = leaderboardId;
       }
-*/
     }
 
     return score;
