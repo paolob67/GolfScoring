@@ -365,11 +365,14 @@ export class GolfScoringApplication extends BootMixin(
                   holeHandicap=(remainder<holeHandy)?(par+quotient):(par+quotient+1)
                 }
               }
+              const filterStr = '{"where":{"email":"'+holeScore.markerId+'"}}';
+              const filter = JSON.parse(filterStr) as Filter;
+              const foundPlayers = await userRepo.find(filter);
               const newHoleScore = {
                 holeNumber: holeScore.holeNumber,
                 self: holeScore.self,
                 marker: holeScore.marker,
-                markerId: holeScore.markerId,
+                markerId: foundPlayers[0].id,
                 validated: holeScore.validated,
                 par: holeHandicap,
                 scoreId: newScoreRec.id,
