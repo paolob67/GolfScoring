@@ -72,7 +72,6 @@ export class ScoreHoleScoreController {
     let score: any ={};
     let receivedId: string = <string>id;
     returnObj = await this.scoreRepository.holeScores(id).create(holeScore);
-    this.scoreRepository.updateScoreResults(receivedId);
     score = await this.scoreRepository.updateScoreResults(receivedId);
     this.leaderboardRepository.updateLeaderboardResults(<string>score.leaderboardId);
     return returnObj;
@@ -102,7 +101,6 @@ export class ScoreHoleScoreController {
     let score: any ={};
     let receivedId: string = <string>id;
     returnObj = await this.scoreRepository.holeScores(id).patch(holeScore, where);
-    this.scoreRepository.updateScoreResults(receivedId);
     score = await this.scoreRepository.updateScoreResults(receivedId);
     this.leaderboardRepository.updateLeaderboardResults(<string>score.leaderboardId);
     return returnObj;

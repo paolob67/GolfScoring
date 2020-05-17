@@ -30,7 +30,7 @@ export class ScoreRepository extends DefaultCrudRepository<
     const filter = {fields: {holeNumber: true, marker: true, par: true}, order: ['holeNumber ASC']} 
     const scores = await this.holeScores(id).find(filter);
     let score: any ={};
-    let leaderboardId: string;
+    let leaderboardId: any;
 
     if (scores.length > 0) {
       let outHoles = 0;
@@ -68,7 +68,7 @@ export class ScoreRepository extends DefaultCrudRepository<
       const filter = { fields: { leaderboardId: true}};
       leaderboardId = <any>await this.findById(id, filter);
       if (leaderboardId) {
-        score.leaderboardId = leaderboardId;
+        score.leaderboardId = leaderboardId.leaderboardId;
       }
     }
 
