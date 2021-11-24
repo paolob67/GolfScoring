@@ -2,7 +2,7 @@
   "name": "mongo",
   "connector": "mongodb",
   "url": "",
-  "host": "127.0.0.1",
+  "host": "mongo-pb-golfscoring.itzroks-50e8v73tt8-p4oocr-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-gb.containers.appdomain.cloud",
   "port": 27017,
   "user": "",
   "password": "",
